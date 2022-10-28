@@ -42,7 +42,8 @@ export function processAddPage(req, res, next) {
         description: req.body.description,
         price: req.body.price
     });
-    booksModel.create(newBook, (err, Book => {
+
+    booksModel.create(newBook, (err, Book) => {
         if(err){
             console.error(err);
             res.end(err);
