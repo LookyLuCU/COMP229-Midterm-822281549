@@ -1,12 +1,18 @@
+/*COMP229-MIDTERM-822281549
+Author: Sheila Donnelly
+StudentID: 822281549
+WebApp Name: Favourite Book List
+*/
+
+//Third-Party Modules
 import createError from 'http-errors';
 import express from 'express';
+import logger from 'morgan';
 
 // Fix for __dirname using ESM
 import path,{dirname} from 'path';
 import {fileURLToPath} from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-import logger from 'morgan';
 
 // import db package
 import mongoose from 'mongoose';
@@ -28,10 +34,9 @@ const db = mongoose.connection;
 db.on('open', () => console.log(`Connected to MongoDB at Localhost`));
 db.on('error', () => console.error('Connection Error'));
 
-// view engine setup
+// view engine ejs setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,7 +44,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
-
 
 
 // use routes

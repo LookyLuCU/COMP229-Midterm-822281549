@@ -1,3 +1,9 @@
+/*COMP229-MIDTERM-822281549
+Author: Sheila Donnelly
+StudentID: 822281549
+WebApp Name: Favourite Book List
+*/
+
 import debug from 'debug';
 debug('comp-229');
 import http from 'http';
@@ -5,7 +11,7 @@ import { HttpError} from 'http-errors';
 
 import app from './server/config/app.js';
 
-const PORT = normalizePort(process.env.PORT || '3000');
+const PORT = normalizePort(process.env.PORT || 3000);
 app.set('port', PORT);
 
 const server = http.createServer(app);
@@ -25,12 +31,11 @@ function normalizePort(val){
     }
 
     return false;
-};
+}
 
 function onError(error) 
 {
-  if (error.syscall !== 'listen') 
-  {
+  if (error.syscall !== 'listen') {
     throw error;
   }
 

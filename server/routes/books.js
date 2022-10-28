@@ -1,3 +1,9 @@
+/*COMP229-MIDTERM-822281549
+Author: Sheila Donnelly
+StudentID: 822281549
+WebApp Name: Favourite Book List
+*/
+
 // modules required for routing
 import { Router } from "express";
 
