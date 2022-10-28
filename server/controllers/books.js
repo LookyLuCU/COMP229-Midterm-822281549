@@ -71,6 +71,23 @@ export function processEditPage(req, res, next) {
     /*****************
     * ADD CODE HERE *
     *****************/
+   let id = req.params.id;
+
+   let newBook = booksModel({
+        _id: req.body.id,
+        name: req.body.name,
+        author: req.body.author,
+        published: req.body.author,
+        description: req.body.description,
+        price: req.body.price
+   });
+   booksModel.updateOne({_id: id }, newBook, (err, Book) => {
+    if(err){
+        console.error(err);
+        res.end(err);
+    };
+    res.redirect('/books/list')
+   })
 }
 
 // GET - process the delete by user id
@@ -78,4 +95,13 @@ export function processDelete(req, res, next) {
     /*****************
   * ADD CODE HERE *
   *****************/
+ let id = req.params.id;
+
+ booksModel.remove({_id: id}, (err) => {
+    if(err){
+        console.error(err);
+        res.end(err);
+    }
+    res.redirect('books/list');
+ })
 }
