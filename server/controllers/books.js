@@ -5,6 +5,7 @@ WebApp Name: Favourite Book List
 */
 
 // define the book model
+import books from '../models/books.js';
 import booksModel from '../models/books.js';
 
 /* GET books List page. READ */
@@ -56,7 +57,13 @@ export function displayEditPage(req, res, next) {
     /*****************
      * ADD CODE HERE *
      *****************/
-
+    booksModel.findById(id, (err, movie) => {
+        if(err){
+            console.error(err);
+            res.end(err);
+        }
+        res,render('index', { title: 'Edit Book', page: 'books/edit', books: books})
+    });
 }
 
 // POST - process the information passed from the details form and update the document
