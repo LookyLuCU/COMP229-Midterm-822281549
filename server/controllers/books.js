@@ -49,7 +49,7 @@ export function processAddPage(req, res, next) {
             res.end(err);
         }
         res.redirect('/books')
-    }))
+    })
 }
 
 // GET the Book Details page in order to edit an existing Book
