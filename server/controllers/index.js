@@ -7,3 +7,7 @@ WebApp Name: Favourite Book List
 export function DisplayHomePage(req, res, next) {
     res.render('index', { title: 'Home', page: 'home' });
 }
+
+export function displayBookList(req, res, next){
+    res.render('index', { title: 'Book List', page: 'books/list' });
+}

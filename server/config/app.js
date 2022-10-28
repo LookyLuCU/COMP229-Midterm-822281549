@@ -21,12 +21,14 @@ import mongoose from 'mongoose';
 import indexRouter from '../routes/index.js';
 import booksRouter from '../routes/books.js';
 
+//INstatntiate Express Application
 const app = new express();
 
 // Complete the DB Configuration
 import {MongoURI, Secret} from '../config/config.js';
 import cookieParser from 'cookie-parser';
 
+//Complete the Database Configuration
 mongoose.connect(MongoURI);
 const db = mongoose.connection;
 
@@ -44,7 +46,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
-
 
 // use routes
 app.use('/', indexRouter);

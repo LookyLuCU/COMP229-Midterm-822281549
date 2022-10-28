@@ -5,13 +5,14 @@ WebApp Name: Favourite Book List
 */
 
 // define the book model
+//import books from '../models/books.js';
 import books from '../models/books.js';
 import booksModel from '../models/books.js';
 
 /* GET books List page. READ */
 export function displayBookList(req, res, next) {
     // find all books in the books collection
-    booksModel.find((err, booksCollection) => {
+    booksModel.find(function(err, booksCollection) {
         if (err) {
             console.error(err);
             res.end(err);
@@ -25,8 +26,8 @@ export function displayAddPage(req, res, next) {
 
     /*****************
     * ADD CODE HERE *
-    *****************/
-   res.render('index', {title: 'Add Book', page: 'books/add', books:{}})
+    ***************** initally used books/add/*/
+   res.render('index', {title: 'Add Book', page: 'books/edit', books:{}})
 }
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -38,7 +39,7 @@ export function processAddPage(req, res, next) {
     let newBook = booksModel({
         name: req.body.name,
         author: req.body.author,
-        published: req.body.author,
+        published: req.body.published,
         description: req.body.description,
         price: req.body.price
     });
@@ -47,9 +48,10 @@ export function processAddPage(req, res, next) {
         if(err){
             console.error(err);
             res.end(err);
-        }
-        res.redirect('/books')
-    })
+        };
+
+        res.redirect('/books/list')
+    } )
 }
 
 // GET the Book Details page in order to edit an existing Book
@@ -58,12 +60,14 @@ export function displayEditPage(req, res, next) {
     /*****************
      * ADD CODE HERE *
      *****************/
+    let id = req.params.id;
+
     booksModel.findById(id, (err, movie) => {
         if(err){
             console.error(err);
             res.end(err);
         }
-        res,render('index', { title: 'Edit Book', page: 'books/edit', books: books})
+        res.render('index', { title: 'Edit Book', page: 'books/edit', books: books})
     });
 }
 
@@ -78,10 +82,11 @@ export function processEditPage(req, res, next) {
         _id: req.body.id,
         name: req.body.name,
         author: req.body.author,
-        published: req.body.author,
+        published: req.body.published,
         description: req.body.description,
         price: req.body.price
    });
+
    booksModel.updateOne({_id: id }, newBook, (err, Book) => {
     if(err){
         console.error(err);

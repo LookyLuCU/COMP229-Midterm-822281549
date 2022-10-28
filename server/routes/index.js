@@ -5,7 +5,8 @@ WebApp Name: Favourite Book List
 */
 
 import { Router } from 'express';
-import {DisplayHomePage} from '../controllers/index.js';
+import { displayBookList, DisplayHomePage, displayBookList, displayEditPage } from '../controllers/books.js';
+
 
 let router = Router();
 
@@ -14,5 +15,12 @@ router.get('/', DisplayHomePage);
 
 /* Display home page. */
 router.get('/home', DisplayHomePage);
+
+//Display Booklist
+router.get('/books/list', displayBookList);
+
+//Display Edit Page
+router.get('books/edit', displayEditPage);
+
 
 export default router;
