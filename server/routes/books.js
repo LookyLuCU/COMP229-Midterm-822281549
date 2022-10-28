@@ -6,7 +6,6 @@ WebApp Name: Favourite Book List
 
 // modules required for routing
 import { Router } from "express";
-
 import { displayAddPage, displayBookList, displayEditPage, processAddPage, processDelete, processEditPage } from "../controllers/books.js";
 
 const router = Router();

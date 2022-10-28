@@ -25,6 +25,7 @@ export function displayAddPage(req, res, next) {
     /*****************
     * ADD CODE HERE *
     *****************/
+   res.render('index', {title: 'Add Book', page: 'books/add', books:{}})
 }
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -33,6 +34,20 @@ export function processAddPage(req, res, next) {
     /*****************
      * ADD CODE HERE *
      *****************/
+    let newBook = booksModel({
+        name: req.body.name,
+        author: req.body.author,
+        published: req.body.author,
+        description: req.body.description,
+        price: req.body.price
+    });
+    booksModel.create(newBook, (err, Book => {
+        if(err){
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/books')
+    }))
 }
 
 // GET the Book Details page in order to edit an existing Book
