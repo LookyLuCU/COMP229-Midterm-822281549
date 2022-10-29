@@ -8,6 +8,8 @@ WebApp Name: Favourite Book List
 import createError from 'http-errors';
 import express from 'express';
 import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 
 // Fix for __dirname using ESM
 import path,{dirname} from 'path';
@@ -22,11 +24,10 @@ import indexRouter from '../routes/index.js';
 import booksRouter from '../routes/books.js';
 
 //INstatntiate Express Application
-const app = new express();
+const app = express();
 
 // Complete the DB Configuration
 import {MongoURI, Secret} from '../config/config.js';
-import cookieParser from 'cookie-parser';
 
 //Complete the Database Configuration
 mongoose.connect(MongoURI);

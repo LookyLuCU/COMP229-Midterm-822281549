@@ -12,13 +12,14 @@ import booksModel from '../models/books.js';
 /* GET books List page. READ */
 export function displayBookList(req, res, next) {
     // find all books in the books collection
-    booksModel.find(function(err, booksCollection) {
+    booksModel.find((err, booksCollection) => {
         if (err) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Book List', page: 'books/list', books: booksCollection });
+        res.render('index', {title: 'Book List', page: 'books/list', books: booksCollection})
     });
+
 }
 
 //  GET the Book Details page in order to add a new Book
@@ -26,8 +27,8 @@ export function displayAddPage(req, res, next) {
 
     /*****************
     * ADD CODE HERE *
-    ***************** initally used books/add/*/
-   res.render('index', {title: 'Add Book', page: 'books/edit', books:{}})
+    *****************/
+   res.render('index', {title: 'Add Book', page: 'books/add', books:{}});
 }
 
 // POST process the Book Details page and create a new Book - CREATE
@@ -44,7 +45,7 @@ export function processAddPage(req, res, next) {
         price: req.body.price
     });
 
-    booksModel.create(newBook, (err, Book) => {
+    booksModel.create(newBook, (err, Books) => {
         if(err){
             console.error(err);
             res.end(err);
@@ -62,12 +63,12 @@ export function displayEditPage(req, res, next) {
      *****************/
     let id = req.params.id;
 
-    booksModel.findById(id, (err, movie) => {
+    booksModel.findById(id, (err, Book) => {
         if(err){
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Edit Book', page: 'books/edit', books: books})
+        res.render('index', { title: 'Edit Book', page: 'books/edit', books: book})
     });
 }
 
@@ -87,7 +88,7 @@ export function processEditPage(req, res, next) {
         price: req.body.price
    });
 
-   booksModel.updateOne({_id: id }, newBook, (err, Book) => {
+   booksModel.updateOne({_id: id }, newBook, (err, Books) => {
     if(err){
         console.error(err);
         res.end(err);
